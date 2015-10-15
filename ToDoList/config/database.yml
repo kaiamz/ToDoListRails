@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: ToDoList_development
+
+test:
+  adapter: postgresql
+  database: ToDoList_test

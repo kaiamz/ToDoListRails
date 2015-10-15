@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+      <div id="left" class="col-md-6">
+        <h1>Tasks To Be Done</h1>
+
+        <span>
+          <ul>
+            <% @tasks.each do |task| %>
+              <% if !task.completed? %>
+              <li id="not_done"><%= task.name %>
+                <form action="/tasks/<%= task.id %>" method="post">
+                <input name="_method" type="hidden" value="get">
+                <input name="completed" type="hidden" value="false">
+                <button class="btn-info btn-xs">Mark done</button>
+                </form>
+              </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </span>
+
+
+        <h1>Add A Task </h1>
+
+        <form action="/tasks" method="post">
+          <label for="task_name">What do you need to do?</label>
+          <input id="task_name" name="task[name]" type="text">
+          <button> Add to list </button>
+        </form>
+      </div>
+
+      <div id="right" class="col-md-6">
+        <h1>Task that are completed</h2>
+        <ul>
+          <% @tasks.each do |task| %>
+            <% if task.completed? %>
+            <li><%= task.name %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+</div>
